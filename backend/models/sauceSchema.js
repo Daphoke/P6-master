@@ -49,9 +49,9 @@ const sauceSchema = mongoose.Schema({
     // Nombre d'utilisateurs qui n'aiment pas la sauce
     dislikes: { type: Number, required: true, default: 0},
     // [ "String <userId>" ]— tableau des identifiants des utilisateurs
-    usersLiked: { type: Array, required: true, default: []},
+    usersLiked: { type: [String], required: true, default: []},
     // [ "String <userId>" ] — tableau des identifiants des utilisateurs qui n'ont pas aimé
-    usersDisliked: { type: Array, required: true, default: []},
+    usersDisliked: { type: [String], required: true, default: []},
 });
 ///// Création du schéma sauce / END /////
 

@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 ///// Cross Origin Resource Sharing setting / END /////
 
 ///// Mise à disposition des "body" sur l'objet req pour toutes les requêtes qui ont comme Content-Type "application/json" /////
-app.use(express.json());
+app.use(bodyParser.json());
 
 // Accès à "/images"
 app.use('/images', express.static(path.join(__dirname, 'images')))

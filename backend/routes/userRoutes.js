@@ -8,8 +8,8 @@ const router = express.Router();
 const userCtrl = require('../controllers/userControllers')
 
 // Routes
-router.post("./signup", userCtrl.signup);
-router.post("./login", userCtrl.login);
+router.post("/signup", userCtrl.signup);
+router.post("/login", userCtrl.login);
 
 // Export des routes
 module.exports = router

@@ -1,9 +1,8 @@
-///// Import module /////
 // import package HTTP natif de Node
 const http = require('http');
-// import fichier P6-master/backend/app
+
+// import fichier P6-master/backend/app (accès application express)
 const app = require('./app');
-///// Import module / END /////
 
 // Normalisation du port, renvoie un port valide
 const normalizePort = val => {

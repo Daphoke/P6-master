@@ -23,14 +23,6 @@ mongoose.connection.on('error',function (err) {
 mongoose.connection.on('disconnected', function () {  
     console.log('(user) Mongoose default connection disconnected'); 
 });
-  
-// Déconnection de MongoDB si le processus Node se termine
-process.on('SIGINT', function() {  
-    mongoose.connection.close(function () { 
-        console.log('(user) Mongoose default connection disconnected through app termination'); 
-        process.exit(0); 
-    }); 
-}); 
 ///// Évènements de connection Mongoose / END /////
 
 ///// Création du schéma utilisateur /////

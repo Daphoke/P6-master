@@ -1,17 +1,20 @@
 ///// Import modules /////
-/// Express
+// Express
 const express = require('express');
-/// Mongoose
+// Mongoose
 const mongoose = require('mongoose');
-/// Body-parser
+// Body-parser
 const bodyParser = require('body-parser');
-/// path
+// path
 const path = require("path");
 ///// import modules / END /////
 
-///// Import Routers /////
+///// Import Routes /////
+// import fichier P6-master/backend/routes/userRoutes
 const userRoutes = require('./routes/userRoutes')
+// import fichier P6-master/backend/routes/sauceRoutes
 const sauceRoutes = require('./routes/sauceRoutes');
+///// Import Routes / END /////
 
 ///// Création application express /////
 const app = express();
@@ -26,7 +29,7 @@ mongoose.connect(
 ///// MongoDB Atlas connection string to Cluster / END /////
 
 ///// Cross Origin Resource Sharing setting /////
-// Configurer les bons headers sur l'objet réponse permet l'envoi et la réception de requêtes et de réponses sans erreurs CORS.
+/// Configurer les bons headers sur l'objet réponse permet l'envoi et la réception de requêtes et de réponses sans erreurs CORS.
 app.use((req, res, next) => {
   // Accès à l'API depuis n'importe quelle origine "*"
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -38,18 +41,18 @@ app.use((req, res, next) => {
 });
 ///// Cross Origin Resource Sharing setting / END /////
 
-///// Mise à disposition des "body" sur l'objet req pour toutes les requêtes qui ont comme Content-Type "application/json" /////
-app.use(bodyParser.json());
+/// Mise à disposition des "body" sur l'objet req pour toutes les requêtes qui ont comme Content-Type "application/json" ///
+app.use(express.json()); // for parsing application/json
 
-// Accès à "/images"
+/// Accès à "/images"
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
-///// Eléments de middleware /////
-// http://localhost:3000/api/sauces ??
+///// Points d'accès, il s'agit de l'URL demandée par l'application front-end. /////
+/// http://localhost:3000/api/sauces
 app.use('/api/sauces', sauceRoutes);
-// http://localhost:3000/api/auth ??
+/// http://localhost:3000/api/auth
 app.use('/api/auth', userRoutes);
-///// Eléments de middleware / END /////
+///// Point d'accès / END /////
 
-///// Export constante app (application) /////
+/// Export constante app (application) ///
 module.exports = app;

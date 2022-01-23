@@ -1,11 +1,11 @@
 ///// Import modules /////
 // Express
 const express = require('express');
-// Mongoose
+// Mongoose, fait le lien avec mongoDB
 const mongoose = require('mongoose');
-// Body-parser
+// Body-parser, analyse les données codées en JSON
 const bodyParser = require('body-parser');
-// path
+// path, fournit des utilitaires pour travailler avec les chemins de fichiers et de répertoires.
 const path = require("path");
 ///// import modules / END /////
 
@@ -28,6 +28,7 @@ mongoose.connect(
   .catch(() => console.log("Connexion à MongoDB échouée!"));
 ///// MongoDB Atlas connection string to Cluster / END /////
 
+////////// Middlewares (.use est utilisé pour configurer nos middlewares) //////////
 ///// Cross Origin Resource Sharing setting /////
 /// Configurer les bons headers sur l'objet réponse permet l'envoi et la réception de requêtes et de réponses sans erreurs CORS.
 app.use((req, res, next) => {
@@ -44,7 +45,7 @@ app.use((req, res, next) => {
 /// Mise à disposition des "body" sur l'objet req pour toutes les requêtes qui ont comme Content-Type "application/json" ///
 app.use(express.json()); // for parsing application/json
 
-/// Accès à "/images"
+/// Accès à "/images", permet renvoyer des fichiers statiques pour la route donnée
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
 ///// Points d'accès, il s'agit de l'URL demandée par l'application front-end. /////
@@ -53,6 +54,7 @@ app.use('/api/sauces', sauceRoutes);
 /// http://localhost:3000/api/auth
 app.use('/api/auth', userRoutes);
 ///// Point d'accès / END /////
+////////// Middlewares /END //////////
 
 /// Export constante app (application) ///
 module.exports = app;
